@@ -1,3 +1,11 @@
-<template class="bg-black">
-    <h1 class="text-slate-300">Hello World</h1>
+<script setup lang="ts">
+import NavVue from '@/components/Nav.vue'; 
+import WelcomeBlock from '@/components/WelcomeBlock.vue';
+import GridBlocks from '@/components/GridBlocks.vue';
+</script>
+
+<template>
+    <NavVue/>
+    <WelcomeBlock/>
+    <GridBlocks/>
 </template>

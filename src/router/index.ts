@@ -1,4 +1,5 @@
 import HomeViewVue from '@/views/HomeView.vue'
+import LoginViewVue from '@/views/LoginView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -8,6 +9,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeViewVue
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginViewVue
     }
   ]
 })
