@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue';
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
+import { useAuthStore } from '@/store/authStore';
 
-let isConnected: boolean;
-
-onBeforeMount(() => {
-    localStorage.getItem('token') ? isConnected = true : isConnected = false;
-})
+const authStore = useAuthStore();
 
 function disconnect()
 {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user_id');
+    authStore.logout();
 }
 </script>
 
@@ -21,7 +16,7 @@ function disconnect()
         <div class="flex flex-1 justify-start font-semibold">
             <RouterLink to="/"><span class="hover:cursor-pointer">DOG-APP</span></RouterLink>
         </div>
-        <div v-if="!isConnected" class="flex flex-1 justify-end gap-5 items-center">
+        <div v-if="!authStore.loggedIn" class="flex flex-1 justify-end gap-5 items-center">
             <RouterLink to="/register">
                 <div class="hover:cursor-pointer  text-green-button-border-color">
                     Register
@@ -33,7 +28,7 @@ function disconnect()
                 </button>
             </RouterLink>
         </div>
-        <div v-if="isConnected" class="flex flex-1 justify-end gap-5 items-center">
+        <div v-if="authStore.loggedIn" class="flex flex-1 justify-end gap-5 items-center">
             <RouterLink to="/">
                 <div @click="disconnect()" class="hover:cursor-pointer  text-green-button-border-color">
                     Disconnect
