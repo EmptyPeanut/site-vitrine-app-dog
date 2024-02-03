@@ -1,7 +1,8 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
 import ProfileViewVue from '@/views/ProfileView.vue';
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +19,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const userToken = localStorage.getItem('token');
         if (userToken) {
-          next(from);
+          next(from.path);
         } else {
           next();
         }
@@ -31,7 +32,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const userToken = localStorage.getItem('token');
         if (!userToken) {
-          next('/');
+          next(from.path);
         } else {
           next();
         }

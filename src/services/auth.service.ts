@@ -1,5 +1,5 @@
 import type { LoginRequest } from "@/types/LoginRequest";
-import type { LoginResponse } from "@/types/LoginResponse";
+import type { LoginResponse, ErrorResponse } from "@/types/ResponseTypes";
 import axios from "axios";
 
 const API_URL: string = 'http://localhost:3000/api';
@@ -11,13 +11,16 @@ class AuthService
         return axios.post(API_URL + '/customer/login', {
             email: user.email,
             password: user.password
-        })
-        .then((response) => {
-            const data: LoginResponse = response.data;
-            localStorage.setItem('token', data.token);
+        }).then(
+            (response) => {
+                const data: LoginResponse = response.data;
+                return data;
 
-            return data;
-        })
+            }).catch((err) => {
+                const errorBody: ErrorResponse = err.response.data;
+                throw errorBody;
+            }
+        )
     }
 
     public logout()
