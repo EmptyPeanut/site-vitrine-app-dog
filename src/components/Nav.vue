@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue';
 import { RouterLink } from 'vue-router'
+
+let isConnected: boolean;
+
+onBeforeMount(() => {
+    localStorage.getItem('token') ? isConnected = true : isConnected = false;
+})
+
+function disconnect()
+{
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
+}
 </script>
 
 /** @faire la page register */
@@ -8,16 +21,28 @@ import { RouterLink } from 'vue-router'
         <div class="flex flex-1 justify-start font-semibold">
             <RouterLink to="/"><span class="hover:cursor-pointer">DOG-APP</span></RouterLink>
         </div>
-        <div class="flex flex-1 justify-end gap-5 items-center">
+        <div v-if="!isConnected" class="flex flex-1 justify-end gap-5 items-center">
             <RouterLink to="/register">
                 <div class="hover:cursor-pointer  text-green-button-border-color">
                     Register
                 </div>
             </RouterLink>
             <RouterLink to="/login">
-                <div class="hover:cursor-pointer px-3 py-2 border-2 rounded-md border-green-button-border-color border-b-4 text-green-button-text-color bg-green-button-bg-color">
+                <button class="hover:cursor-pointer px-3 py-2 border-2 rounded-md border-green-button-border-color border-b-4 text-green-button-text-color bg-green-button-bg-color">
                     Login
+                </button>
+            </RouterLink>
+        </div>
+        <div v-if="isConnected" class="flex flex-1 justify-end gap-5 items-center">
+            <RouterLink to="/">
+                <div @click="disconnect()" class="hover:cursor-pointer  text-green-button-border-color">
+                    Disconnect
                 </div>
+            </RouterLink>
+            <RouterLink to="/profile">
+                <button class="hover:cursor-pointer px-3 py-2 border-2 rounded-md border-green-button-border-color border-b-4 text-green-button-text-color bg-green-button-bg-color">
+                    Profile
+                </button>
             </RouterLink>
         </div>
         

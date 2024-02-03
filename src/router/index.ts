@@ -1,5 +1,6 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
+import ProfileViewVue from '@/views/ProfileView.vue';
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -13,7 +14,28 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: LoginViewVue
+      component: LoginViewVue,
+      beforeEnter: (to, from, next) => {
+        const userToken = localStorage.getItem('token');
+        if (userToken) {
+          next(from);
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileViewVue,
+      beforeEnter: (to, from, next) => {
+        const userToken = localStorage.getItem('token');
+        if (!userToken) {
+          next('/');
+        } else {
+          next();
+        }
+      }
     }
   ]
 })

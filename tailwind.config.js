@@ -11,7 +11,7 @@ export default {
         "modal-border-color": "#C3CEDE",
         "background-primary-color": "#edf0f5",
         "input-bg-color": "#f0f2f5"
-      } 
+      }
     },
   },
   plugins: [],
