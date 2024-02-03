@@ -6,3 +6,7 @@
     background-color: #edf0f5;
     min-height: 100vh;
 }
+
+.modal {
+    @apply w-full flex flex-col gap-5 bg-white p-10 px-20 border-2 border-b-[5px] border-modal-border-color rounded-md mt-[5rem];
+}

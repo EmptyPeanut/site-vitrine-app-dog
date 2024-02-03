@@ -24,7 +24,7 @@ async function handleSubmit(){
 <template>
     <div class="flex flex-col h-screen items-center  justify-center gap-10">
         <form @submit.prevent="handleSubmit()" class="flex flex-col items-center justify-center">
-            <div class="flex flex-col gap-5 bg-white p-10 px-20 border-2 border-b-4 border-modal-border-color rounded-md">
+            <div class="modal">
                 <div class="flex flex-col gap-2 align-top">
                     <label for="email" class=" text-green-button-bg-color">Email</label>
                     <input id="email" type="email" v-model="email" placeholder="example@given.com" class="p-2 bg-input-bg-color rounded-md">

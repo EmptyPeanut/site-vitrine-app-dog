@@ -17,7 +17,7 @@ const router = createRouter({
       name: 'login',
       component: LoginViewVue,
       beforeEnter: (to, from, next) => {
-        const userToken = localStorage.getItem('token');
+        const userToken = localStorage.getItem('user');
         if (userToken) {
           next(from.path);
         } else {
@@ -30,7 +30,7 @@ const router = createRouter({
       name: 'profile',
       component: ProfileViewVue,
       beforeEnter: (to, from, next) => {
-        const userToken = localStorage.getItem('token');
+        const userToken = localStorage.getItem('user');
         if (!userToken) {
           next(from.path);
         } else {

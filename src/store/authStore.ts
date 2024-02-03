@@ -5,11 +5,11 @@ import authService from '@/services/auth.service';
 
 type InitialState = {
     loggedIn: boolean;
-    token: string|null;
+    user: LoginResponse|null;
 }
 
-const token: string|null = localStorage.getItem('token');
-const initialState: InitialState = token ? { loggedIn: true, token: token} : { loggedIn: false, token: null};
+const user: string|null = localStorage.getItem('user');
+const initialState: InitialState = user ? { loggedIn: true, user: JSON.parse(user)} : { loggedIn: false, user: null};
 
 export const useAuthStore = defineStore('authStore', {
     state: () => (initialState),
@@ -23,11 +23,10 @@ export const useAuthStore = defineStore('authStore', {
             return authService.login(loginForm).then(
                 (response: LoginResponse) => {
                     
-                    localStorage.setItem('token', response.token);
-                    localStorage.setItem('user_id', response.user_id.toString());
+                    localStorage.setItem('user', JSON.stringify(response));
 
                     this.loggedIn = true;
-                    this.token = response.token;
+                    this.user = response;
                     return response;
 
                 }).catch((err: ErrorResponse) => {
@@ -37,10 +36,9 @@ export const useAuthStore = defineStore('authStore', {
         },
         logout()
         {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user_id');
+            localStorage.removeItem('user');
             this.loggedIn = false;
-            this.token = null;
+            this.user = null;
         }
     }
 })
