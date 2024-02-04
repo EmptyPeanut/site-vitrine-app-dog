@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+    background-color: #edf0f5;
+    min-height: 100vh;
+}
+*{
+    @apply text-slate-600 font-sans;
+}
+
+
+.formInput{
+    @apply p-2 bg-input-bg-color rounded-md w-full;
+}
+.inputLabel {
+    @apply text-green-button-bg-color;
+}
+.labelInputContainer{
+    label{
+        @apply inputLabel;
+    }
+    input{
+        @apply formInput;
+    }
+    @apply flex flex-col gap-2 align-top flex-1 w-full;
+}
+
+
+.modal {
+    @apply mx-auto w-[90%] sm:w-full flex flex-col gap-5 bg-white p-10 px-20 border-2 border-b-[5px] border-modal-border-color rounded-md mt-[2rem];
+}
+
+.title{
+    @apply text-4xl text-slate-500 mt-[3rem];
+}
+
+.dogsGrid {
+    @apply grid sm:grid-cols-2 md:grid-cols-3 mt-[2rem];
+}
+
+.dogGridCase {
+    @apply flex flex-col items-center gap-3 p-10 border-2 border-b-[5px] bg-white border-modal-border-color rounded-md;
+}

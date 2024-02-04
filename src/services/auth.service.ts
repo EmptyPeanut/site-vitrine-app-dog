@@ -6,24 +6,22 @@ const API_URL: string = 'http://localhost:3000/api';
 
 class AuthService
 {
-    public login(user: LoginRequest)
+    public async login(user: LoginRequest)
     {
         return axios.post(API_URL + '/customer/login', {
             email: user.email,
             password: user.password
         }).then(
             (response) => {
-                const data: LoginResponse = response.data;
-                return data;
+                return response.data as LoginResponse;
 
             }).catch((err) => {
-                const errorBody: ErrorResponse = err.response.data;
-                throw errorBody;
+                return Promise.reject(err.response.data as ErrorResponse);
             }
         )
     }
 
-    public logout()
+    public async logout()
     {
         localStorage.removeItem('token');
     }

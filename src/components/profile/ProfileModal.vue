@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { ref, type Ref, onMounted, watch } from 'vue';
+import { ref, type Ref, onMounted } from 'vue';
 import NameBlock from './NameBlock.vue';
+import DogsGrid from './DogsGrid.vue';
 import userService from '@/services/user.service'
+import type { DogType } from '@/types/DogType';
 
 let email: Ref<string|null> = ref('');
 let pseudo: Ref<string|null> = ref('');
 let firstName: Ref<string|null> = ref('');
 let lastName: Ref<string|null> = ref('');
+let sex: Ref<string|null> = ref('');
+let birthdate: Ref<string|null> = ref('');
+let dogs: Ref<DogType[]|[]> = ref([]);
 
-/** @todo Créer une erreur */
+
 onMounted(() => {
     userService.getPersonalInfos().then(response => {
         console.log(response);
@@ -16,35 +21,53 @@ onMounted(() => {
         pseudo.value = response.pseudo;
         firstName.value = response.firstName;
         lastName.value = response.lastName;
+        sex.value = response.sex.name;
+        if (response.birthdate) {
+            birthdate.value = new Date(response.birthdate).toLocaleDateString('fr-FR');
+        }
+        dogs.value = response.dogs;
     })
 })
 </script>
 
 <template>
 
-    <div class="sm:container mx-auto">
+    <div class="container mx-auto">
         <NameBlock :name="firstName"/>
+
+        <h2 class="title">Personal informations</h2>
         <div class="modal">
-            <div class="flex flex-row gap-10 items-center justify-center w-full">
-                <div class="flex flex-col gap-2 align-top w-full">
-                    <label for="email" class=" text-green-button-bg-color">Email</label>
-                    <input id="email" type="email" v-model="email" class="p-2 bg-input-bg-color rounded-md">
+            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+                <div class="labelInputContainer">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" v-model="email">
                 </div>
-                <div class="flex flex-col gap-2 align-top w-full">
-                    <label for="pseudo" class=" text-green-button-bg-color">Pseudo</label>
-                    <input id="pseudo" type="text" v-model="pseudo" class="p-2 bg-input-bg-color rounded-md">
+                <div class="labelInputContainer">
+                    <label for="pseudo">Pseudo</label>
+                    <input id="pseudo" type="text" v-model="pseudo">
                 </div>
             </div>
-            <div class="flex flex-row gap-10 items-center justify-center w-full">
-                <div class="flex flex-col gap-2 align-top w-full">
-                    <label for="firstName" class=" text-green-button-bg-color">First Name</label>
-                    <input id="firstName" type="text" v-model="firstName" class="p-2 bg-input-bg-color rounded-md">
+            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+                <div class="labelInputContainer">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" v-model="firstName">
                 </div>
-                <div class="flex flex-col gap-2 align-top w-full">
-                    <label for="lastName" class=" text-green-button-bg-color">Last name</label>
-                    <input id="lastName" type="text" v-model="lastName" class="p-2 bg-input-bg-color rounded-md">
+                <div class="labelInputContainer">
+                    <label for="lastName">Last name</label>
+                    <input id="lastName" type="text" v-model="lastName">
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+                <div class="labelInputContainer">
+                    <label for="sex">Sex</label>
+                    <input id="sex" type="text" v-model="sex" disabled>
+                </div>
+                <div class="labelInputContainer">
+                    <label for="birthdate">Birthdate</label>
+                    <input id="birthdate" type="text" v-model="birthdate" disabled>
                 </div>
             </div>
         </div>
+        <DogsGrid :dogs="dogs"/>
     </div>
 </template>

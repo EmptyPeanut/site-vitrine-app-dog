@@ -22,14 +22,14 @@ async function handleSubmit(){
 </script>
 
 <template>
-    <div class="flex flex-col h-screen items-center  justify-center gap-10">
+    <div class="container max-w-[40rem] mx-auto">
         <form @submit.prevent="handleSubmit()" class="flex flex-col items-center justify-center">
             <div class="modal">
                 <div class="flex flex-col gap-2 align-top">
                     <label for="email" class=" text-green-button-bg-color">Email</label>
                     <input id="email" type="email" v-model="email" placeholder="example@given.com" class="p-2 bg-input-bg-color rounded-md">
                 </div>
-                <div class="flex flex-col gap-2 align-top w-[32rem]">
+                <div class="flex flex-col gap-2 align-top">
                     <label for="password" class=" text-green-button-bg-color">Password</label>
                     <input id="password" type="password" v-model="password" placeholder="password" class="p-2 bg-input-bg-color rounded-md">
                     <span class=" font-light text-red-500 text-sm">{{ errorMsg }}</span>
