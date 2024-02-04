@@ -10,6 +10,14 @@ let errorMsg: Ref<string> = ref('');
 const router = useRouter();
 const authStore = useAuthStore();
 async function handleSubmit(){
+    if (email.value == '' || password.value == '') {
+        errorMsg.value = 'Can\'t leave empty fields';
+        return;
+    }
+    if (!email.value.includes('@') || !email.value.includes('.')) {
+        errorMsg.value = 'Invalid email address';
+        return;
+    }
     authStore.login({email: email.value, password: password.value}).then(
         () => {
             if (authStore.loggedIn === true) {
