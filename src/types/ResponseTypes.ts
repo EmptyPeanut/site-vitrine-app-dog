@@ -7,3 +7,8 @@ export type ErrorResponse = {
     code: number;
     message: string;
 }
+
+export type SexResponse = {
+    id?: number;
+    name: string;
+}

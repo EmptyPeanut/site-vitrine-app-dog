@@ -1,4 +1,4 @@
-import type { LoginRequest } from "@/types/LoginRequest";
+import type { LoginRequest, RegisterRequest } from "@/types/RequestTypes";
 import type { LoginResponse, ErrorResponse } from "@/types/ResponseTypes";
 import axios from "axios";
 
@@ -26,13 +26,17 @@ class AuthService
         localStorage.removeItem('token');
     }
 
-    /** @todo créer le type de création de compte */
-    public register(user: any)
+    public register(registerForm: RegisterRequest)
     {
-        return axios.post(API_URL + '/customer/register', {
-            pseudo: user.pseudo
-            // ...
-        })
+        return axios.post(API_URL + '/customer', registerForm).then(
+            response => {
+                return response.data as LoginResponse;
+            }
+        ).catch(
+            error => {
+                return Promise.reject(error.response.data as ErrorResponse)
+            }
+        )
     }
 }
 

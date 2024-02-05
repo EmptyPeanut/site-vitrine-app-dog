@@ -23,7 +23,7 @@ function disconnect()
                 </div>
             </RouterLink>
             <RouterLink to="/login">
-                <button class="hover:cursor-pointer px-3 py-2 border-2 rounded-md border-green-button-border-color border-b-4 text-green-button-text-color bg-green-button-bg-color">
+                <button class="myButton">
                     Login
                 </button>
             </RouterLink>
@@ -35,7 +35,7 @@ function disconnect()
                 </div>
             </RouterLink>
             <RouterLink to="/profile">
-                <button class="hover:cursor-pointer px-3 py-2 border-2 rounded-md border-green-button-border-color border-b-4 text-green-button-text-color bg-green-button-bg-color">
+                <button class="myButton">
                     Profile
                 </button>
             </RouterLink>
