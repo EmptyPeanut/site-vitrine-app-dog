@@ -1,6 +1,7 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
 import ProfileViewVue from '@/views/ProfileView.vue';
+import RegisterViewVue from '@/views/RegisterView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 
@@ -32,6 +33,19 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const userToken = localStorage.getItem('user');
         if (!userToken) {
+          next(from.path);
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterViewVue,
+      beforeEnter: (to, from, next) => {
+        const userToken = localStorage.getItem('user');
+        if (userToken) {
           next(from.path);
         } else {
           next();

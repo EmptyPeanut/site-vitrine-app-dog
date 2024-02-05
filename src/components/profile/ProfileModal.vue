@@ -16,7 +16,6 @@ let dogs: Ref<DogType[]|[]> = ref([]);
 
 onMounted(() => {
     userService.getPersonalInfos().then(response => {
-        console.log(response);
         email.value = response.email;
         pseudo.value = response.pseudo;
         firstName.value = response.firstName;
@@ -37,7 +36,7 @@ onMounted(() => {
 
         <h2 class="title">Personal informations</h2>
         <div class="modal">
-            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+            <div class="horizontalInputs">
                 <div class="labelInputContainer">
                     <label for="email">Email</label>
                     <input id="email" type="email" v-model="email">
@@ -47,7 +46,7 @@ onMounted(() => {
                     <input id="pseudo" type="text" v-model="pseudo">
                 </div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+            <div class="horizontalInputs">
                 <div class="labelInputContainer">
                     <label for="firstName">First Name</label>
                     <input id="firstName" type="text" v-model="firstName">
@@ -57,7 +56,7 @@ onMounted(() => {
                     <input id="lastName" type="text" v-model="lastName">
                 </div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-10 items-center justify-center w-full">
+            <div class="horizontalInputs">
                 <div class="labelInputContainer">
                     <label for="sex">Sex</label>
                     <input id="sex" type="text" v-model="sex" disabled>

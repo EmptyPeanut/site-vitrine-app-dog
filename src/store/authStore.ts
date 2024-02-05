@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { LoginRequest } from '@/types/LoginRequest';
+import type { LoginRequest, RegisterRequest } from '@/types/RequestTypes';
 import type { LoginResponse, ErrorResponse } from '@/types/ResponseTypes';
 import authService from '@/services/auth.service';
 
@@ -14,9 +14,20 @@ const initialState: InitialState = user ? { loggedIn: true, user: JSON.parse(use
 export const useAuthStore = defineStore('authStore', {
     state: () => (initialState),
     actions: {
-        register(registerForm: any)
+        async register(registerForm: RegisterRequest)
         {
-            console.log(registerForm);
+            return authService.register(registerForm).then(
+                response => {
+                    localStorage.setItem('user', JSON.stringify(response));
+
+                    this.loggedIn = true;
+                    this.user = response;
+                    return response;
+                }
+            ).catch(err => {
+                return Promise.reject(err);
+            })
+            
         },
         async login(loginForm: LoginRequest)
         {
@@ -30,7 +41,7 @@ export const useAuthStore = defineStore('authStore', {
                     return response;
 
                 }).catch((err: ErrorResponse) => {
-                    throw err;
+                    return Promise.reject(err);
                 }
             )
         },
