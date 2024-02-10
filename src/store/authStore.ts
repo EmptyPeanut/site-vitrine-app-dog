@@ -6,10 +6,12 @@ import authService from '@/services/auth.service';
 type InitialState = {
     loggedIn: boolean;
     user: LoginResponse|null;
+    role: string[]
 }
 
 const user: string|null = localStorage.getItem('user');
-const initialState: InitialState = user ? { loggedIn: true, user: JSON.parse(user)} : { loggedIn: false, user: null};
+const parsedUser: null|LoginResponse = user ? JSON.parse(user) : null;
+const initialState: InitialState = parsedUser ? { loggedIn: true, user: parsedUser, role: parsedUser.roles } : { loggedIn: false, user: null, role: []};
 
 export const useAuthStore = defineStore('authStore', {
     state: () => (initialState),
@@ -22,6 +24,7 @@ export const useAuthStore = defineStore('authStore', {
 
                     this.loggedIn = true;
                     this.user = response;
+                    this.role = response.roles;
                     return response;
                 }
             ).catch(err => {
@@ -38,6 +41,7 @@ export const useAuthStore = defineStore('authStore', {
 
                     this.loggedIn = true;
                     this.user = response;
+                    this.role = response.roles;
                     return response;
 
                 }).catch((err: ErrorResponse) => {
