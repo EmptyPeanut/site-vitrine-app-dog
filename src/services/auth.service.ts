@@ -21,11 +21,6 @@ class AuthService
         )
     }
 
-    public async logout()
-    {
-        localStorage.removeItem('token');
-    }
-
     public register(registerForm: RegisterRequest)
     {
         return axios.post(API_URL + '/customer', registerForm).then(

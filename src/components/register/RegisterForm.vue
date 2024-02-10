@@ -88,7 +88,7 @@ function handleSubmit()
 
 
 <template>
-    <div class="container max-w-[40rem] mx-auto">
+    <div class="myContainer">
         <h1 class="title">Register</h1>
         <form class="modal" @submit.prevent="handleSubmit">
             <div class="labelInputContainer" :class="{ error: v$.email.$errors.length }">
