@@ -34,6 +34,11 @@ function disconnect()
                     Disconnect
                 </div>
             </RouterLink>
+            <RouterLink v-if="authStore?.role?.includes('ADMIN')" to="/admin">
+                <div class="hover:cursor-pointer text-green-button-border-color px-3 py-2 border-[2px] border-green-button-border-color rounded-md">
+                    Admin
+                </div>
+            </RouterLink>
             <RouterLink to="/profile">
                 <button class="myButton">
                     Profile
