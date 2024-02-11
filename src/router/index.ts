@@ -2,6 +2,8 @@ import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
 import ProfileViewVue from '@/views/ProfileView.vue';
 import RegisterViewVue from '@/views/RegisterView.vue';
+import AdminViewVue from '@/views/AdminView.vue';
+import UserIhmView from '@/views/admin/UserIhmView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 
@@ -51,6 +53,23 @@ const router = createRouter({
           next();
         }
       }
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: AdminViewVue,
+      children: [
+        {
+          path: '',
+          name: 'defaultAdmin',
+          redirect: { name: 'users' }
+        },
+        {
+          path: 'users',
+          name: 'users',
+          component: UserIhmView
+        }
+      ]
     }
   ]
 })
