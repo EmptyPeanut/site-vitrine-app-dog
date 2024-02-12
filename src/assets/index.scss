@@ -20,7 +20,7 @@
     @apply flex flex-row gap-1;
 }
 .formInput{
-    @apply p-2 bg-input-bg-color rounded-md w-full;
+    @apply p-2 bg-slate-100 rounded-md w-full;
 }
 .inputLabel {
     @apply text-green-button-bg-color font-semibold;
@@ -68,8 +68,10 @@
     @apply flex flex-col items-center gap-3 p-10 border-2 border-b-[5px] bg-white border-modal-border-color rounded-md;
 }
 
+
+// ----------------------------------- ADMIN --------------------------------------
 .leftNav {
-    @apply flex flex-col gap-1 p-2 h-screen w-fit justify-center border-r-2 border-slate-300;
+    @apply flex flex-col gap-1 p-2 w-fit justify-center border-r-2 border-slate-200;
 
     div {
         @apply flex justify-center items-center hover:bg-slate-200 w-10 h-10 rounded-md;
@@ -78,5 +80,32 @@
     div.active {
         @apply bg-slate-300;
     }
+}
 
+
+.userGrid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 100px 200px 200px 200px 200px 150px;
+}
+.userGridLine {
+    @apply border-b-[1px] px-5 py-4 border-slate-200 bg-slate-50 hover:bg-slate-100;
+
+    div {
+        @apply text-sm text-slate-500;
+    }
+}
+
+
+.labelInputContainerAdmin{
+    label{
+        @apply font-semibold text-sm text-slate-400;
+    }
+    input{
+        @apply p-2 rounded-md w-full border-2 bg-transparent border-slate-300 text-sm;
+    }
+    select {
+        @apply p-2 rounded-md w-full;
+    }
+    @apply flex flex-col gap-2 align-top justify-start flex-1 w-full;
 }
