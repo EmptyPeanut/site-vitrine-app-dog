@@ -3,8 +3,9 @@ import LoginViewVue from '@/views/LoginView.vue'
 import ProfileViewVue from '@/views/ProfileView.vue';
 import RegisterViewVue from '@/views/RegisterView.vue';
 import AdminViewVue from '@/views/AdminView.vue';
-import UserIhmView from '@/views/admin/UserIhmView.vue';
+import UserIhmView from '@/views/admin/users/UserIhmView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import UserDetailsViewVue from '@/views/admin/users/UserDetailsView.vue';
 
 
 const router = createRouter({
@@ -58,6 +59,20 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: AdminViewVue,
+      //@todo Vérifier que l'utilisateur est bien un admin, faire un point d'arrêt exprés dans l'api
+      beforeEnter: (to, from, next) => {
+        const userToken = localStorage.getItem('user');
+        const parsedUserToken = userToken ? JSON.parse(userToken) : null;
+        if (!parsedUserToken) {
+          next(from.path);
+        } else {
+          if (parsedUserToken.roles.includes('ADMIN') || parsedUserToken.roles.includes('MODERATOR')) {
+            next();
+          }else {
+            next(from.path);
+          }
+        }
+      },
       children: [
         {
           path: '',
@@ -67,7 +82,15 @@ const router = createRouter({
         {
           path: 'users',
           name: 'users',
-          component: UserIhmView
+          component: UserIhmView,
+        },
+        {
+          path: 'user/:id',
+          name: 'userDetails',
+          component: UserDetailsViewVue,
+          props: (route) => ({
+            userId: route.params.id
+          })
         }
       ]
     }

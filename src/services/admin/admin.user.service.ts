@@ -4,7 +4,7 @@ const API_URL: string = 'http://localhost:3000/api';
 class AdminUserService
 {
 
-    public getUserIhm(email?: string, pseudo?: string, limit: number = 20, offset?: number)
+    public async getUserIhm(email?: string, pseudo?: string, limit: number = 20, offset?: number)
     {
         let url: string = `${API_URL}/admin/customer/ihm`;
 
@@ -21,6 +21,19 @@ class AdminUserService
         }
 
         return axios.get(url , {headers: {requiresAuth: true}}).then(
+            response => {
+                return response.data;
+            }
+        ).catch(
+            err => {
+                return Promise.reject(err.response.data);
+            }
+        )
+    }
+
+    public async getUser(id: number)
+    {
+        return axios.get(API_URL + '/admin/customer/' + id , {headers: {requiresAuth: true}}).then(
             response => {
                 return response.data;
             }

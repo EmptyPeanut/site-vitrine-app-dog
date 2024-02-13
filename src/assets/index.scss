@@ -71,7 +71,7 @@
 
 // ----------------------------------- ADMIN --------------------------------------
 .leftNav {
-    @apply flex flex-col gap-1 p-2 w-fit justify-center border-r-2 border-slate-200;
+    @apply flex flex-col gap-1 p-2 w-fit justify-center border-r-2 border-slate-200 relative;
 
     div {
         @apply flex justify-center items-center hover:bg-slate-200 w-10 h-10 rounded-md;
