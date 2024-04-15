@@ -95,6 +95,18 @@
         @apply text-sm text-slate-500;
     }
 }
+.userDetailsContainer {
+    @apply flex flex-col mx-auto max-w-[1200px] p-10;
+}
+.userDetailsDataContainer {
+    @apply flex flex-col gap-2 bg-slate-50 p-10;
+}
+.userDetailsDataContainer div {
+    @apply flex flex-row gap-2;
+}
+.userDetailsDataContainer div input{
+    @apply hoverInput;
+}
 
 
 .labelInputContainerAdmin{
@@ -108,4 +120,8 @@
         @apply p-2 rounded-md w-full;
     }
     @apply flex flex-col gap-2 align-top justify-start flex-1 w-full;
+}
+
+.hoverInput{
+    @apply p-2 bg-slate-100 rounded-md w-full hover:border-2 hover:border-green-button-bg-color;
 }

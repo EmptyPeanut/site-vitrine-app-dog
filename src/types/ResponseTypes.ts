@@ -1,3 +1,5 @@
+import type { DogType } from "./DogType";
+
 export type LoginResponse = {
     user_id: number;
     token: string;
