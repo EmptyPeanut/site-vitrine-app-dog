@@ -91,7 +91,12 @@ const router = createRouter({
           props: (route) => ({
             userId: route.params.id
           })
-        }
+        },
+        {
+          path: 'events',
+          name: 'events',
+          component: () => import('@/views/admin/events/EventsView.vue')
+        },
       ]
     }
   ]
