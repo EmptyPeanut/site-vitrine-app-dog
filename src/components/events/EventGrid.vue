@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
 
 <template>
     <div class="flex flex-row items-end h-[8rem] bg-slate-100 border-b-2 border-slate-200">
-        <div class="eventGrid items-end mb-2 px-5">
+        <div class="userGrid items-end mb-2 px-5">
             <div><span class="font-semibold text-xs text-slate-400">Id</span></div>
             <div class="labelInputContainerAdmin">
                 <input v-model="titleInput" id="title" type="text" placeholder="Title" @input="getEvents()"/>
@@ -65,15 +65,14 @@ onBeforeUnmount(() => {
                 <input v-model="descriptionInput" id="description" type="text" placeholder="Description" @input="getEvents()"/>
                 <span class="font-semibold text-xs text-slate-400">Description</span>
             </div>
-            <div><span class="font-semibold text-xs text-slate-400">Max People</span></div>
             <div><span class="font-semibold text-xs text-slate-400">Address</span></div>
             <div><span class="font-semibold text-xs text-slate-400">Closed</span></div>
             <div><span class="font-semibold text-xs text-slate-400">Founder</span></div>
         </div>
     </div>
     <div id="eventsGrid" class="h-[calc(100vh-8rem-8rem)] overflow-y-scroll">
-        <!-- <RouterLink v-for="event in events" :to="{name: 'eventDetails', params: { id: event.id } }">
+        <div v-for="event in events" >
             <EventGridLine :eventData="event"/>
-        </RouterLink> -->
+        </div>
     </div>
 </template>

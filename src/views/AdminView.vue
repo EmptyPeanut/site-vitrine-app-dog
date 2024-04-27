@@ -20,6 +20,9 @@ import { RouterLink, RouterView } from 'vue-router'
                 <RouterLink :to="{name: 'profile'}">
                     <div :class="{ 'active': $route.matched.some(route => route.path === '/alerts') }"><i class="mdi mdi-alert-circle-outline mdi-24px"></i></div>
                 </RouterLink>
+                <RouterLink :to="{name: 'events'}">
+                    <div :class="{ 'active': $route.matched.some(route => route.path === '/events') }"><i class="mdi mdi-forest mdi-24px"></i></div>
+                </RouterLink>
             </div>
             <div class="w-full h-full">
                 <RouterView/>

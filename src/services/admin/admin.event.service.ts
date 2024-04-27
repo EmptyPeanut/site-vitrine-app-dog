@@ -19,7 +19,6 @@ class AdminEventService {
         if (description) {
             url.includes('?') ? url += `&description=${description}` : url += `?description=${description}`;
         }
-
         return axios.get(url, { headers: { requiresAuth: true } }).then(
             response => {
                 return response.data;

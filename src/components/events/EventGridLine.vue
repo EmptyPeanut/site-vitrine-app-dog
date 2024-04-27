@@ -1,16 +1,15 @@
 <script setup lang="ts">
-const props = defineProps(['EventData']);
-
+const props = defineProps(['eventData']);
 </script>
 
 
 <template>
     <div class="userGrid userGridLine">
-        <div>{{ EventData.title }}</div>
-        <div>{{ EventData.description }}</div>
-        <div>{{ EventData.maxPeople }}</div>
-        <div>{{ EventData.address }}</div>
-        <div>{{ EventData.closed }}</div>
-        <div>{{ EventData.founder }}</div>
+        <div>{{ eventData.id }}</div>
+        <div>{{ eventData.title }}</div>
+        <div>{{ eventData.description }}</div>
+        <div>{{ eventData.address.address }}</div>
+        <div>{{ eventData.closed }}</div>
+        <div>{{ eventData.founder }}</div>
     </div>
 </template>

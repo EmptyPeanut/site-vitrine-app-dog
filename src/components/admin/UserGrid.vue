@@ -72,8 +72,8 @@ onBeforeUnmount(() => {
         </div>
     </div>
     <div id="usersGrid" class="h-[calc(100vh-8rem-8rem)] overflow-y-scroll">
-        <!-- <RouterLink v-for="user in users" :to="{name: 'userDetails', params: { id: user.id } }">
+        <RouterLink v-for="user in users" :to="{name: 'userDetails', params: { id: user.id } }">
             <UserGridLine :userData="user"/>
-        </RouterLink> -->
+        </RouterLink>
     </div>
 </template>
