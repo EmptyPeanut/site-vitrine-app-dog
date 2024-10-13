@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import adminUserService from '@/services/admin/admin.user.service';
-import { onBeforeUnmount, Ref, onMounted, ref } from 'vue';
+import { onBeforeUnmount, type Ref, onMounted, ref } from 'vue';
 import UserGridLine from '@/components/admin/UserGridLine.vue';
 
 const users: Ref<any[]> = ref([]);
